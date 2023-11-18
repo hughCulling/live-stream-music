@@ -39,4 +39,32 @@ async function handlePermissions() {
 const previewEl = document.getElementById("preview");
 client.attachPreview(previewEl);
 
+// streamConfig is required for retrieveMediaStream
+const streamConfig = IVSBroadcastClient.BASIC_LANDSCAPE;
+
+async function retrieveMediaStream() {
+  // List Available Devices
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  window.videoDevices = devices.filter((d) => d.kind === "videoinput");
+  window.audioDevices = devices.filter((d) => d.kind === "audioinput");
+
+  // Retrieve a MediaStream from a Device
+  window.cameraStream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      deviceId: window.videoDevices[0].deviceId,
+      width: {
+        ideal: streamConfig.maxResolution.width,
+      },
+      height: {
+        ideal: streamConfig.maxResolution.height,
+      },
+    },
+  });
+  window.microphoneStream = await navigator.mediaDevices.getUserMedia({
+    audio: { deviceId: window.audioDevices[0].deviceId },
+  });
+}
+
+retrieveMediaStream();
+
 console.log("I'm working");
