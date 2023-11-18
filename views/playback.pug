@@ -1,4 +1,24 @@
-extends layout
-
-block content
-  h2 Playback
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', href='/images/favicon.ico')
+    script(src='https://player.live-video.net/1.23.0/amazon-ivs-player.min.js')
+  body
+    h1 Live Stream Music
+    hr
+    a(href='/') Index
+    span  | 
+    a(href='/broadcast') Broadcast
+    span  | 
+    a(href='playback') Playback
+    hr
+    h2 Playback
+    video(id='video-player' playsinline)
+    script(src='/javascripts/playback.js')
+    hr 
+    footer
+      p Author: Hugh Wilfred Culling
+      p
+        a(href="mailto:hughculling@icloud.com") hughculling@icloud.com 
