@@ -71,4 +71,19 @@ async function retrieveMediaStream() {
 
 retrieveMediaStream();
 
+// Need stream key for StartBroadcast()
+const streamKey = "sk_us-east-1_4W2sFQfsleKv_DLm1YlAQ9xi8XL5AulgHKknxrpY04r";
+
+// Start a Broadcast
+function startBroadcast() {
+  client
+    .startBroadcast(streamKey)
+    .then((result) => {
+      console.log("I am successfully broadcasting!");
+    })
+    .catch((error) => {
+      console.error("Something drastically failed while broadcasting!", error);
+    });
+}
+
 console.log("I'm working");
