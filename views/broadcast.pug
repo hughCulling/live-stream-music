@@ -1,5 +1,18 @@
-extends layout
-
-block content
-  h2 Broadcast
-  script(src='/javascripts/broadcast.js')
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='icon', href='/images/favicon.ico')
+    script(src='https://web-broadcast.live-video.net/1.6.0/amazon-ivs-web-broadcast.js')
+  body
+    h1 Live Stream Music
+    hr
+    a(href='/') Index
+    span  | 
+    a(href='/broadcast') Broadcast
+    span  | 
+    a(href='playback') Playback
+    hr
+    h2 Broadcast
+    script(src='/javascripts/broadcast.js')
