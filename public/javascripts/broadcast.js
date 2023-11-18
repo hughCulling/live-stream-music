@@ -86,4 +86,9 @@ function startBroadcast() {
     });
 }
 
+// Stop a Broadcast
+function stopBroadcast() {
+  client.stopBroadcast();
+}
+
 console.log("I'm working");
