@@ -7,7 +7,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var broadcastRouter = require("./routes/broadcast");
 var playbackRouter = require("./routes/playback");
-var signupRouter = require("./routes/signup");
+var signUpRouter = require("./routes/sign-up");
 
 var app = express();
 
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/broadcast", broadcastRouter);
 app.use("/playback", playbackRouter);
-app.use("/signup", signupRouter);
+app.use("/sign-up", signUpRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
