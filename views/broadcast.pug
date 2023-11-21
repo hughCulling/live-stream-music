@@ -1,31 +1,14 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='icon', href='/images/favicon.ico')
+extends layout.pug
+
+block append head
     script(src='https://web-broadcast.live-video.net/1.6.0/amazon-ivs-web-broadcast.js')
-  body
-    h1 Live Stream Music
-    hr
-    a(href='/') Index
-    span  | 
-    a(href='/broadcast') Broadcast
-    span  | 
-    a(href='/playback') Playback
-    span  | 
-    a(href='/sign-up') Sign Up
-    hr
-    h2 Broadcast
-    canvas(id='preview')
-    br
-    button(onClick='startBroadcast()') Start broadcast
-    br
-    br
-    button(onClick='stopBroadcast()') Stop broadcast
-    script(src='/javascripts/broadcast.js')
-    hr 
-    footer
-      p Author: Hugh Wilfred Culling
-      p
-        a(href="mailto:hughculling@icloud.com") hughculling@icloud.com 
+
+block content
+  h2 Broadcast
+  canvas(id='preview')
+  br
+  button(onClick='startBroadcast()') Start broadcast
+  br
+  br
+  button(onClick='stopBroadcast()') Stop broadcast
+  script(src='/javascripts/broadcast.js')
