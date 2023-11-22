@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-//-------------------------------------------------------------
+//--------------------------------------------------------------------------------
 // MongoDB
 // Require MongoDB language driver
 const { MongoClient } = require("mongodb");
@@ -42,10 +42,8 @@ const signUpUser = async () => {
     await client.close();
   }
 };
-// Run the main function
-// main();
 
-//----------------------------------------------------------------
+//----------------------------------------------------------------------------------
 
 /* GET sign up page. */
 router.get("/", function (req, res, next) {

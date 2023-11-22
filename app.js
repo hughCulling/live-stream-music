@@ -4,52 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-// //-------------------------------------------------------------
-// // MongoDB
-// // Require MongoDB language driver
-// const { MongoClient } = require("mongodb");
-// const uri = require("./atlas_uri");
-
-// const client = new MongoClient(uri);
-// const dbname = "live-stream-music";
-// const collection_name = "users";
-
-// const usersCollection = client.db(dbname).collection(collection_name);
-
-// // Connect to the database
-// const connectToDatabase = async () => {
-//   try {
-//     await client.connect();
-//     console.log(
-//       `Connected to the ${dbname} database 🌍 \nFull connection string: ${uri}`
-//     );
-//   } catch (err) {
-//     console.error(`Error connecting to the database: ${err}`);
-//   }
-// };
-
-// const sampleUser = {
-//   name: "Pholorphria",
-//   email: "hughculling@gmail.com",
-//   password: "pw123",
-// };
-
-// const main = async () => {
-//   try {
-//     await connectToDatabase();
-//     let result = await usersCollection.insertOne(sampleUser);
-//     console.log(`Inserted document: ${result.insertedId}`);
-//   } catch (err) {
-//     console.error(`Error connecting to the database: ${err}`);
-//   } finally {
-//     await client.close();
-//   }
-// };
-// // Run the main function
-// main();
-
-// //----------------------------------------------------------------
-
 var indexRouter = require("./routes/index");
 var broadcastRouter = require("./routes/broadcast");
 var playbackRouter = require("./routes/playback");
