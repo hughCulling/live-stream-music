@@ -10,6 +10,7 @@ var broadcastRouter = require("./routes/broadcast");
 var playbackRouter = require("./routes/playback");
 var signUpRouter = require("./routes/sign-up");
 var signInRouter = require("./routes/sign-in");
+var userRouter = require("./routes/user");
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use("/broadcast", broadcastRouter);
 app.use("/playback", playbackRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/sign-in", signInRouter);
+app.use("/:id", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
