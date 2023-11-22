@@ -33,6 +33,7 @@ const signInUser = async () => {
     let result = await usersCollection.findOne(documentToFind);
     console.log(`Found one document`);
     console.log(result);
+    return result;
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`);
   } finally {
@@ -45,10 +46,17 @@ const signInUser = async () => {
 /* GET sign in page. */
 router.get("/", function (req, res, next) {
   res.render("sign_in", { title: "Sign In | Live Stream Music" });
+  if (req.session.user) {
+    console.log("True.");
+    console.log("req.session.user = " + req.session.user);
+    // res.send(`<p>Logged in as: ${req.session.user.name}</p>`);
+  } else {
+    console.log("False");
+  }
 });
 
 /* POST sign in page. */
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   let userEmail = req.body.email;
   let userPassword = req.body.password;
 
@@ -57,7 +65,12 @@ router.post("/", function (req, res, next) {
     password: `${userPassword}`,
   };
 
-  signInUser();
+  let result = await signInUser();
+  console.log(result);
+
+  req.session.user = result;
+  console.log(req.session.user);
+  req.session.save();
 
   res.render("sign_in", { title: "Sign In | Live Stream Music" });
 });
