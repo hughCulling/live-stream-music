@@ -42,12 +42,14 @@ router.get("/", function (req, res, next) {
     res.render("sign_in", {
       title: "Sign In | Live Stream Music",
       href: `${id}`,
+      status: `Signed in as: ${req.session.user.name}`,
     });
   } else {
     console.log("They are not signed in.");
     res.render("sign_in", {
       title: "Sign In | Live Stream Music",
       href: "/sign-in",
+      status: "User: not signed in",
     });
   }
 });
@@ -68,12 +70,14 @@ router.post("/", async function (req, res, next) {
     res.render("sign_in", {
       title: "Sign In | Live Stream Music",
       href: `${id}`,
+      status: `Signed in as: ${req.session.user.name}`,
     });
   } else {
     console.log("They are not signed in.");
     res.render("sign_in", {
       title: "Sign In | Live Stream Music",
       href: "/sign-in",
+      status: "User: not signed in",
     });
   }
 });

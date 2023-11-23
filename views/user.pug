@@ -3,6 +3,9 @@ extends layout.pug
 block append head
   script(src='https://web-broadcast.live-video.net/1.6.0/amazon-ivs-web-broadcast.js')
 
+block status 
+  span(class="status")= status
+  
 block content
   h2 User
   canvas(id='preview')

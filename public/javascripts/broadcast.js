@@ -90,5 +90,3 @@ function startBroadcast() {
 function stopBroadcast() {
   client.stopBroadcast();
 }
-
-console.log("I'm working");
