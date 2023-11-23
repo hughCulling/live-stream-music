@@ -1,19 +1,14 @@
-var express = require("express");
-var router = express.Router();
-
-//--------------------------------------------------------------------------------
-// MongoDB
-// Require MongoDB language driver
+const express = require("express");
 const { MongoClient } = require("mongodb");
 const uri = require("../atlas_uri");
 
+const router = express.Router();
 const client = new MongoClient(uri);
 const dbname = "live-stream-music";
 const collection_name = "users";
-
 const usersCollection = client.db(dbname).collection(collection_name);
+let userAccount = {};
 
-// Connect to the database
 const connectToDatabase = async () => {
   try {
     await client.connect();
@@ -23,12 +18,6 @@ const connectToDatabase = async () => {
   } catch (err) {
     console.error(`Error connecting to the database: ${err}`);
   }
-};
-
-let userAccount = {
-  name: "Phlorpia",
-  email: "hughculling@gmail.com",
-  password: "pw123",
 };
 
 const signUpUser = async () => {
@@ -43,28 +32,48 @@ const signUpUser = async () => {
   }
 };
 
-//----------------------------------------------------------------------------------
-
 /* GET sign up page. */
 router.get("/", function (req, res, next) {
-  res.render("sign_up", { title: "Sign Up | Live Stream Music" });
+  if (req.session.user) {
+    console.log("They are signed in.");
+    let id = "/" + req.session.user._id;
+    res.render("sign_up", {
+      title: "Sign Up | Live Stream Music",
+      href: `${id}`,
+    });
+  } else {
+    console.log("They are not signed in.");
+    res.render("sign_up", {
+      title: "Sign Up | Live Stream Music",
+      href: "/sign-in",
+    });
+  }
 });
 
 /* POST sign up page. */
 router.post("/", function (req, res, next) {
-  let userName = req.body.name;
-  let userEmail = req.body.email;
-  let userPassword = req.body.password;
-
   userAccount = {
-    name: `${userName}`,
-    email: `${userEmail}`,
-    password: `${userPassword}`,
+    name: `${req.body.name}`,
+    email: `${req.body.email}`,
+    password: `${req.body.password}`,
   };
 
   signUpUser();
 
-  res.render("sign_up", { title: "Sign Up | Live Stream Music" });
+  if (req.session.user) {
+    console.log("They are signed in.");
+    let id = "/" + req.session.user._id;
+    res.render("sign_up", {
+      title: "Sign Up | Live Stream Music",
+      href: `${id}`,
+    });
+  } else {
+    console.log("They are not signed in.");
+    res.render("sign_up", {
+      title: "Sign Up | Live Stream Music",
+      href: "/sign-in",
+    });
+  }
 });
 
 module.exports = router;

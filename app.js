@@ -1,18 +1,18 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const session = require("express-session");
 
-var indexRouter = require("./routes/index");
-var broadcastRouter = require("./routes/broadcast");
-var playbackRouter = require("./routes/playback");
-var signUpRouter = require("./routes/sign-up");
-var signInRouter = require("./routes/sign-in");
-var userRouter = require("./routes/user");
+const indexRouter = require("./routes/index");
+const broadcastRouter = require("./routes/broadcast");
+const playbackRouter = require("./routes/playback");
+const signUpRouter = require("./routes/sign-up");
+const signInRouter = require("./routes/sign-in");
+const userRouter = require("./routes/user");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
